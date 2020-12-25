@@ -43,6 +43,7 @@ workout_spreadsheet_username = os.getenv("SHEETLY_USERNAME")
 workout_spreadsheet_project_name = "workoutTracker"
 workout_spreadsheet_sheet_name = "workouts"
 workout_spreadsheet_endpoint = f"https://api.sheety.co/{workout_spreadsheet_username}/{workout_spreadsheet_project_name}/{workout_spreadsheet_sheet_name}"
+workout_spreadsheet_auth = (os.getenv("AUTH_USERNAME"), os.getenv("AUTH_PASS"))
 
 for exercise in exercise_data:
 
@@ -56,5 +57,5 @@ for exercise in exercise_data:
         }
     }
 
-    sheet_response = requests.post(url=workout_spreadsheet_endpoint, json=exercise_params)
-    # print(sheet_response)
+    sheet_response = requests.post(url=workout_spreadsheet_endpoint, json=exercise_params, auth=workout_spreadsheet_auth)
+    print(sheet_response)
